@@ -1,39 +1,26 @@
-package com.openclassrooms.mddapi.entity;
+package com.openclassrooms.mddapi.dto;
 
-import javax.persistence.*;
 import lombok.*;
 
 @Data
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
     private Long id;
-
-    @Column(nullable = false, unique = true)
     private String username;
-
-    @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(nullable = false)
     private String password;
 
-    public User() {
+    public UserDto() {
     }
 
-    public User(Long id, String username, String email, String password) {
+    public UserDto(Long id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.password = password;
     }
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }

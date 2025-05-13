@@ -1,19 +1,16 @@
 package com.openclassrooms.mddapi.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "articles")
-public class Article {
-
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,9 +1,7 @@
 package com.openclassrooms.mddapi.entity;
 
-
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -11,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "topics")
 public class Topic {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,4 +19,3 @@ public class Topic {
     @Column(length = 500)
     private String description;
 }
-

@@ -1,9 +1,7 @@
 package com.openclassrooms.mddapi.entity;
 
-
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -11,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "subscriptions", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "topic_id"}))
 public class Subscription {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
