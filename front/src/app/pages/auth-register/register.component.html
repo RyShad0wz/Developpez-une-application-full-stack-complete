@@ -34,9 +34,10 @@
   <mat-form-field appearance="fill">
     <mat-label>Confirmer mot de passe</mat-label>
     <input matInput type="password" formControlName="confirm" />
-    <mat-error *ngIf="registerForm.errors?.notMatching">
-      Les mots de passe ne correspondent pas
-    </mat-error>
+<mat-error *ngIf="registerForm.hasError('notMatching')">
+  Les mots de passe ne correspondent pas
+</mat-error>
+
   </mat-form-field>
 
   <div class="error" *ngIf="error">{{ error }}</div>

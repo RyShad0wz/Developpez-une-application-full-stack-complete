@@ -5,6 +5,7 @@ import { CommentService }        from '../../core/services/comment.service';
 import { Article }            from '../../core/interfaces/article.interface';
 import { Comment }            from '../../core/interfaces/comment.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -21,7 +22,8 @@ export class ArticleDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private commentService: CommentService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -44,20 +46,22 @@ export class ArticleDetailComponent implements OnInit {
     );
   }
 
-  submitComment(): void {
-    if (this.commentForm.invalid) return;
-    const articleId = this.article.id;
-    this.commentService.createComment({
-      content: this.commentForm.value.content,
-      authorId: /* récupéré depuis AuthService */,
-      articleId,
-      createdAt: new Date()
-    }).subscribe({
-      next: () => {
-        this.commentForm.reset();
-        this.loadComments(articleId);
-      },
-      error: err => this.error = err.message
-    });
+submitComment(): void {
+  if (this.commentForm.invalid) return;
+  const articleId = this.article.id;
+  const currentUserId = this.authService.getCurrentUserId(); // à implémenter
+  const payload = {
+    content:   this.commentForm.value.content,
+    authorId:  currentUserId,
+    articleId,
+    createdAt: new Date().toISOString()
+  };
+  this.commentService.createComment(payload as any).subscribe({
+    next: () => {
+      this.commentForm.reset();
+      this.loadComments(articleId);
+    },
+    error: err => this.error = err.message
+  });
   }
 }
