@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <!-- Logo cliquable vers l'accueil -->
+  <img src="/assets/logo_p6.png" alt="MDD" class="logo" (click)="goHome()" />
+
+  <!-- Espace flex -->
+  <span class="spacer"></span>
+
+  <!-- Menu desktop -->
+  <nav class="desktop-menu">
+    <button mat-button routerLink="/articles">Articles</button>
+    <button mat-button routerLink="/topics">Thèmes</button>
+    <button mat-button (click)="logout()">Se déconnecter</button>
+    <button mat-icon-button routerLink="/profile">
+      <mat-icon>person</mat-icon>
+    </button>
+  </nav>
+
+  <!-- Bouton hamburger mobile -->
+  <button mat-icon-button class="mobile-menu" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="mobile-drawer">
+  <mat-drawer #drawer mode="over" position="end">
+    <button mat-list-item routerLink="/articles">Articles</button>
+    <button mat-list-item routerLink="/topics">Thèmes</button>
+    <button mat-list-item (click)="logout()">Se déconnecter</button>
+  </mat-drawer>
+</mat-drawer-container>

@@ -1,7 +1,48 @@
-.center {
+.home-container {
   height: 100vh;
+  padding: 0 1rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  text-align: center;
+  background: white;
+}
+
+.logo {
+  max-width: 300px;
+  width: 60%;
+  margin-bottom: 2rem;
+}
+
+.home-nav {
+  display: flex;
+  gap: 3rem;
+}
+
+.home-link {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #6c63ff;   // ou utiliser une variable de ton thème Angular Material
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.home-link:hover {
+  opacity: 0.7;
+}
+
+/* Responsive mobile */
+@media (max-width: 600px) {
+  .logo {
+    width: 80%;
+    margin-bottom: 1.5rem;
+  }
+  .home-nav {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .home-link {
+    font-size: 1.1rem;
+  }
 }
