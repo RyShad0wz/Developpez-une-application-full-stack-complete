@@ -1,6 +1,6 @@
-package com.rental.backend.config;
+package com.openclassrooms.mddapi.config;
 
-import com.rental.backend.service.CustomUserDetailsService;
+import com.openclassrooms.mddapi.service.CustomUserDetailsService;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,18 +1,23 @@
-package com.rental.backend.service;
+package com.openclassrooms.mddapi.service;
 
-import com.rental.backend.dto.*;
-import com.rental.backend.entity.User;
-import com.rental.backend.exception.InvalidCredentialsException;
-import com.rental.backend.repository.UserRepository;
-import org.springframework.security.authentication.*;
+import com.openclassrooms.mddapi.dto.AuthenticationResponse;
+import com.openclassrooms.mddapi.dto.LoginRequest;
+import com.openclassrooms.mddapi.dto.RegisterRequest;
+import com.openclassrooms.mddapi.entity.User;
+import com.openclassrooms.mddapi.exception.InvalidCredentialsException;
+import com.openclassrooms.mddapi.repository.UserRepository;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 
 @Service
 public class AuthService {
+
 
   private final UserRepository userRepository;
   private final JwtService jwtService;

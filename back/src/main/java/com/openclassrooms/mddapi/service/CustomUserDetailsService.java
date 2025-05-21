@@ -1,7 +1,7 @@
-package com.rental.backend.service;
+package com.openclassrooms.mddapi.service;
 
-import com.rental.backend.entity.User;
-import com.rental.backend.repository.UserRepository;
+import com.openclassrooms.mddapi.entity.User;
+import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 

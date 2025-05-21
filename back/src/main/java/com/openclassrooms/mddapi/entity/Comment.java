@@ -1,10 +1,9 @@
 package com.openclassrooms.mddapi.entity;
 
-import javax.persistence.*;
-import lombok.*;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Table(name = "comments")
 public class Comment {

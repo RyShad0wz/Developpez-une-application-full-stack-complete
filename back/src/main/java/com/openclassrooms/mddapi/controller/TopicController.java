@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.controller;
+/* package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.TopicDto;
 import com.openclassrooms.mddapi.service.TopicService;
@@ -27,5 +27,5 @@ public class TopicController {
     public ResponseEntity<List<TopicDto>> getAll() {
         return ResponseEntity.ok(topicService.getAllTopics());
     }
-}
+} */
 

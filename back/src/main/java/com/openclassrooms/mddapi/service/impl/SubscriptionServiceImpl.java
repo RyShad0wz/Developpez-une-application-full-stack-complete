@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.service.impl;
+/* package com.openclassrooms.mddapi.service.impl;
 
 import com.openclassrooms.mddapi.dto.SubscriptionDto;
 import com.openclassrooms.mddapi.entity.Subscription;
@@ -45,4 +45,4 @@ public class SubscriptionServiceImpl implements SubscriptionService {
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
-}
+} */

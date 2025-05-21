@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.service.impl;
+/* package com.openclassrooms.mddapi.service.impl;
 
 import com.openclassrooms.mddapi.dto.TopicDto;
 import com.openclassrooms.mddapi.entity.Topic;
@@ -34,5 +34,5 @@ public class TopicServiceImpl implements TopicService {
     public List<TopicDto> getAllTopics() {
         return topicRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
     }
-}
+} */
 

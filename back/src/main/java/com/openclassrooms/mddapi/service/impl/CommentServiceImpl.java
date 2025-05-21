@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.service.impl;
+/* package com.openclassrooms.mddapi.service.impl;
 
 import com.openclassrooms.mddapi.dto.CommentDto;
 import com.openclassrooms.mddapi.entity.Comment;
@@ -64,4 +64,4 @@ public class CommentServiceImpl implements CommentService {
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
-}
+} */

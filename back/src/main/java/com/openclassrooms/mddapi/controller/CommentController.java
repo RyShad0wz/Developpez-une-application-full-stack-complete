@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.controller;
+/* package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.CommentDto;
 import com.openclassrooms.mddapi.service.CommentService;
@@ -22,4 +22,4 @@ public class CommentController {
     public ResponseEntity<List<CommentDto>> getByPost(@PathVariable Long postId) {
         return ResponseEntity.ok(commentService.getCommentsByPost(postId));
     }
-}
+} */

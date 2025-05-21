@@ -1,8 +1,5 @@
 package com.openclassrooms.mddapi.dto;
 
-import lombok.*;
-
-@Data
 public class SubscriptionDto {
     private Long id;
     private Long userId;

@@ -1,4 +1,4 @@
-package com.rental.backend.exception;
+package com.openclassrooms.mddapi.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

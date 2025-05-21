@@ -1,11 +1,8 @@
 package com.openclassrooms.mddapi.entity;
 
-import javax.persistence.*;
-import lombok.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+import jakarta.persistence.*;
+
 @Entity
 @Table(name = "subscriptions", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "topic_id"}))
 public class Subscription {

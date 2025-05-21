@@ -1,13 +1,10 @@
 package com.openclassrooms.mddapi.entity;
 
-import javax.persistence.*;
-import lombok.*;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "articles")
 public class Post {

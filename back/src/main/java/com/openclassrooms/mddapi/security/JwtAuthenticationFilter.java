@@ -1,7 +1,8 @@
-package com.rental.backend.security;
+package com.openclassrooms.mddapi.security;
 
-import com.rental.backend.service.CustomUserDetailsService;
-import com.rental.backend.service.JwtService;
+
+import com.openclassrooms.mddapi.service.CustomUserDetailsService;
+import com.openclassrooms.mddapi.service.JwtService;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
@@ -12,6 +13,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+
 import java.io.IOException;
 
 @Component

@@ -1,9 +1,7 @@
 package com.openclassrooms.mddapi.dto;
 
-import lombok.*;
 import java.time.LocalDateTime;
 
-@Data
 public class CommentDto {
     private Long id;
     private String content;

@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.controller;
+/* package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.PostDto;
 import com.openclassrooms.mddapi.service.PostService;
@@ -27,4 +27,4 @@ public class PostController {
     public ResponseEntity<List<PostDto>> getAll() {
         return ResponseEntity.ok(postService.getAllPosts());
     }
-}
+} */

@@ -1,11 +1,8 @@
 package com.openclassrooms.mddapi.entity;
 
-import javax.persistence.*;
-import lombok.*;
+import jakarta.persistence.*;
+;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "topics")
 public class Topic {

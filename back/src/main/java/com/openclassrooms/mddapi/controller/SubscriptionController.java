@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.controller;
+/* package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.SubscriptionDto;
 import com.openclassrooms.mddapi.service.SubscriptionService;
@@ -28,4 +28,4 @@ public class SubscriptionController {
     public ResponseEntity<List<SubscriptionDto>> getByUser(@PathVariable Long userId) {
         return ResponseEntity.ok(subscriptionService.getSubscriptionsByUser(userId));
     }
-}
+} */

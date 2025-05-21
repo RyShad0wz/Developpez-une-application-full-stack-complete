@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.service.impl;
+/* package com.openclassrooms.mddapi.service.impl;
 
 import com.openclassrooms.mddapi.dto.PostDto;
 import com.openclassrooms.mddapi.entity.Post;
@@ -49,4 +49,4 @@ public class PostServiceImpl implements PostService {
     public List<PostDto> getAllPosts() {
         return postRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
     }
-}
+} */
