@@ -1,0 +1,27 @@
+<article *ngIf="article">
+  <h1>{{ article.title }}</h1>
+  <p class="meta">{{ article.createdAt | date:'short' }} — {{ article.authorId }}</p>
+  <div class="content">{{ article.content }}</div>
+</article>
+
+<section class="comments">
+  <h2>Commentaires</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let c of comments">
+      <p>{{ c.content }}</p>
+      <small>{{ c.createdAt | date:'short' }} par {{ c.authorId }}</small>
+    </mat-list-item>
+  </mat-list>
+
+  <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Ajouter un commentaire</mat-label>
+      <textarea matInput formControlName="content" rows="3"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid">
+      Commenter
+    </button>
+  </form>
+</section>
+
+<div class="error" *ngIf="error">{{ error }}</div>

@@ -10,6 +10,7 @@ interface LoginResponse {
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private readonly TOKEN_KEY = 'mdd-token';
   private readonly API = '/api/auth';

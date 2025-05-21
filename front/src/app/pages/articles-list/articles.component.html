@@ -1,0 +1,10 @@
+<div class="articles-container" *ngIf="!error">
+  <mat-card *ngFor="let a of articles" class="article-card" routerLink="/articles/{{a.id}}">
+    <mat-card-header>
+      <mat-card-title>{{ a.title }}</mat-card-title>
+      <mat-card-subtitle>{{ a.createdAt | date:'short' }} par {{ a.authorId }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>{{ a.content | slice:0:100 }}…</mat-card-content>
+  </mat-card>
+</div>
+<div class="error" *ngIf="error">{{ error }}</div>
