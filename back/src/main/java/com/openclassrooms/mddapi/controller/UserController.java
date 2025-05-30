@@ -1,7 +1,10 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.dto.TopicDto;
 import com.openclassrooms.mddapi.dto.UserDto;
+import com.openclassrooms.mddapi.dto.UserProfileDto;
 import com.openclassrooms.mddapi.dto.UserRegistrationRequest;
+import com.openclassrooms.mddapi.service.SubscriptionService;
 import com.openclassrooms.mddapi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,7 +17,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -24,9 +30,12 @@ public class UserController {
 
     private final UserService userService;
 
+    private final SubscriptionService subscriptionService;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, SubscriptionService subscriptionService) {
         this.userService = userService;
+        this.subscriptionService = subscriptionService;
     }
 
     @GetMapping("/{id}")
@@ -44,6 +53,14 @@ public class UserController {
         UserDto userDto = userService.getUserById(id);
         return ResponseEntity.ok(userDto);
     }
+
+    @GetMapping("/me")
+    public UserProfileDto getProfile(Authentication auth) {
+        UserDto user = userService.getUserByEmail(auth.getName());
+        List<TopicDto> subs = subscriptionService.getSubscribedTopics(user.getId());
+        return new UserProfileDto(user.getName(), user.getEmail(), subs);
+    }
+
 
     @PostMapping("/register")
     @Operation(summary = "Créer un nouvel utilisateur", description = "Enregistre un nouvel utilisateur avec les informations fournies")
