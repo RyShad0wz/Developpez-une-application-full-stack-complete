@@ -18,24 +18,12 @@ public class UserDto {
     @Schema(description = "Adresse email de l'utilisateur", example = "john@example.com")
     private String email;
 
-    @Schema(description = "Date de création de l'utilisateur", example = "2021-06-01")
-    @JsonFormat(pattern = "yyyy/MM/dd") // Format de date personnalisé
-    @JsonProperty("created_at")
-    private LocalDateTime createdAt;
-
-    @Schema(description = "Date de mise à jour de l'utilisateur", example = "2021-06-01")
-    @JsonFormat(pattern = "yyyy/MM/dd") // Format de date personnalisé
-    @JsonProperty("updated_at")
-    private LocalDateTime updatedAt;
-
     public UserDto() {}
 
-    public UserDto(Long id, String name, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public UserDto(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     // Getters et Setters
@@ -57,17 +45,5 @@ public class UserDto {
     }
     public void setEmail(String email) {
         this.email = email;
-    }
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

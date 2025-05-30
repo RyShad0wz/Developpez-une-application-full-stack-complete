@@ -1,9 +1,6 @@
 package com.openclassrooms.mddapi.controller;
 
-import com.openclassrooms.mddapi.dto.TopicDto;
-import com.openclassrooms.mddapi.dto.UserDto;
-import com.openclassrooms.mddapi.dto.UserProfileDto;
-import com.openclassrooms.mddapi.dto.UserRegistrationRequest;
+import com.openclassrooms.mddapi.dto.*;
 import com.openclassrooms.mddapi.service.SubscriptionService;
 import com.openclassrooms.mddapi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -59,6 +56,29 @@ public class UserController {
         UserDto user = userService.getUserByEmail(auth.getName());
         List<TopicDto> subs = subscriptionService.getSubscribedTopics(user.getId());
         return new UserProfileDto(user.getName(), user.getEmail(), subs);
+    }
+
+    @PutMapping("/me")
+    public UserDto updateCurrentUser(@RequestBody UpdateUserRequest req, Authentication authentication) {
+        String email = authentication.getName();
+        UserDto user = userService.getUserByEmail(email);
+        return userService.updateUser(user.getId(), req);
+    }
+
+    @DeleteMapping("/me/subscriptions/{topicId}")
+    public ResponseEntity<Void> unsubscribe(
+            @PathVariable Long topicId,
+            Authentication authentication
+    ) {
+        UserDto user = userService.getUserByEmail(authentication.getName());
+        subscriptionService.unsubscribe(user.getId(), topicId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/me/password")
+    public ResponseEntity<Void> updatePassword(@RequestBody UpdatePasswordRequest req, Authentication auth) {
+        userService.updatePassword(auth.getName(), req);
+        return ResponseEntity.noContent().build();
     }
 
 
