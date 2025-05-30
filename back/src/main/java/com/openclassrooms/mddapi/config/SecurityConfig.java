@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,20 +39,32 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-      .csrf(csrf -> csrf.disable())
-      .cors(cors -> cors.configurationSource(corsConfigurationSource))
-      .authorizeHttpRequests(auth -> {
-        // Autoriser l’accès public aux endpoints d’authentification et aux GET sur les utilisateurs et rentals
-        auth.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
-        auth.requestMatchers("/api/auth/register", "/api/auth/login").permitAll();
-        auth.requestMatchers("/api/rentals/**", "/api/messages/**", "/api/user/**", "/api/auth/me").authenticated();
-      })
-      .exceptionHandling(exceptions -> exceptions
-        .authenticationEntryPoint(customAuthenticationEntryPoint()) // Gestion personnalisée des erreurs d'authentification
-      )
-      .authenticationProvider(authenticationProvider)
-      // Ajout du filtre JWT
-      .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+            .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.configurationSource(corsConfigurationSource))
+            .authorizeHttpRequests(auth -> auth
+                    // 1) Swagger / docs
+                    .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")
+                    .permitAll()
+
+                    // 2) Auth (register + login)
+                    .requestMatchers("/api/auth/register", "/api/auth/login")
+                    .permitAll()
+
+                    // 3) Lecture publique des articles & topics
+                    .requestMatchers(HttpMethod.GET, "/api/articles/**", "/api/topics/**", "/api/comments/**")
+                    .permitAll()
+
+                    // 4) Toutes les autres API nécessitent un token
+                    .requestMatchers("/api/**")
+                    .authenticated()
+
+                    // 5) Fallback (ne devrait pas arriver si vous n'avez pas d'autres endpoints)
+                    .anyRequest()
+                    .authenticated()
+            )
+            .exceptionHandling(ex -> ex.authenticationEntryPoint(customAuthenticationEntryPoint()))
+            .authenticationProvider(authenticationProvider)
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
   }

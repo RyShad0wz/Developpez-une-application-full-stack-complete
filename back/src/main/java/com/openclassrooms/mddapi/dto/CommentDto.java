@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class CommentDto {
     private Long id;
+    private String authorName;
     private String content;
     private Long authorId;
     private Long articleId;
@@ -12,9 +13,10 @@ public class CommentDto {
     public CommentDto() {
     }
 
-    public CommentDto(Long id, String content, Long authorId, Long articleId, LocalDateTime createdAt) {
+    public CommentDto(Long id, String content, Long authorId, String authorName, Long articleId, LocalDateTime createdAt) {
         this.id = id;
         this.content = content;
+        this.authorName = authorName;
         this.authorId = authorId;
         this.articleId = articleId;
         this.createdAt = createdAt;
@@ -34,6 +36,14 @@ public class CommentDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public Long getAuthorId() {

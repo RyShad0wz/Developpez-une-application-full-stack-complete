@@ -1,27 +1,51 @@
-article {
-  margin: 2rem auto;
-  max-width: 800px;
-  .meta {
-    color: gray;
-    font-size: 0.9rem;
-  }
-  .content {
-    margin-top: 1rem;
-  }
+.comments-container {
+  margin-top: 2em;
 }
 
-.comments {
-  margin: 2rem auto;
-  max-width: 800px;
+.comment-bubble {
+  background: #f3f3f3;
+  border-radius: 18px;
+  padding: 1em 1.2em;
+  margin-bottom: 1em;
+  max-width: 80%;
+  box-shadow: 0 2px 8px #eee;
+  position: relative;
 }
-.comment-form {
+
+.comment-header {
+  font-size: 0.9em;
+  color: #6d41a1;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2px;
 }
-.error {
-  color: red;
+
+.author-badge {
+  background: #7a4be6;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
   text-align: center;
-  margin-top: 1rem;
+  font-weight: bold;
+  margin-right: 8px;
+  font-size: 1.05em;
+}
+
+.author-name {
+  font-weight: 500;
+}
+
+.date {
+  color: #b0b0b0;
+  margin-left: auto;
+}
+
+.comment-content {
+  color: #222;
+  margin-top: 3px;
+  word-break: break-word;
 }

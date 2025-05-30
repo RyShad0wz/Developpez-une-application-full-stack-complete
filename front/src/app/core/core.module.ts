@@ -1,12 +1,7 @@
-// src/app/core/core.module.ts
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HTTP_INTERCEPTORS }            from '@angular/common/http';
-
-// Services & Guards
 import { AuthService }                  from './services/auth.service';
 import { AuthGuard }                    from './guards/auth.guard';
-
-// Interceptors
 import { AuthInterceptor }              from './interceptors/auth.interceptor';
 
 @NgModule({

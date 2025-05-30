@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TopicService }      from '../../core/services/topic.service';
-import { Topic }          from '../../core/interfaces/topic.interface';
+import { Router } from '@angular/router';
+import { TopicService } from '../../core/services/topic.service';
+import { Topic } from '../../core/interfaces/topic.interface';
 
 @Component({
   selector: 'app-topics',
@@ -9,18 +10,22 @@ import { Topic }          from '../../core/interfaces/topic.interface';
 })
 export class TopicsComponent implements OnInit {
   topics: Topic[] = [];
-  error: string | null = null;
 
-  constructor(private topicService: TopicService) {}
+  constructor(
+    private topicService: TopicService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.topicService.getAllTopics().subscribe({
-      next: data => this.topics = data,
-      error: err => this.error = err.message || 'Impossible de charger les thèmes'
-    });
+    this.topicService.getAllTopics()
+      .subscribe({
+        next: (data: Topic[]) => this.topics = data,
+        error: (err: any) => console.error(err)
+      });
   }
 
-  subscribe(topicId: number): void {
-    // appeler SubscriptionService.subscribe(...)
+  /** Navigation vers le détail du thème */
+  viewTopic(id: number) {
+    this.router.navigate(['/topics', id]);
   }
 }

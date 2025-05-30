@@ -1,0 +1,72 @@
+
+.mat-toolbar {
+  background: #ffffff;
+  height: 64px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: none;      
+}
+
+/* Logo cliquable */
+.logo {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-height: 80px;        /* réduit la hauteur du logo */
+  cursor: pointer;         /* indique que c’est cliquable */
+}
+
+/* Espace flexible pour pousser le menu à droite */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Menu desktop : boutons alignés horizontalement */
+.desktop-menu {
+  display: flex;
+  align-items: center;
+
+  button[mat-button] {
+    margin-left: 0.5rem;
+    font-weight: 500;
+    color: rgb(0, 0, 0);         /* s’assure que le texte reste blanc */
+  }
+
+  mat-icon-button {
+    margin-left: 0.5rem;
+    color: rgb(0, 0, 0);
+  }
+}
+
+  button.logout {
+    color: #e53935 !important; /* rouge vif */
+  }
+
+
+/* Bouton hamburger caché en desktop */
+.mobile-menu {
+  display: none;
+  color: rgb(0, 0, 0);
+}
+
+
+
+mat-drawer button[mat-list-item] {
+  width: 100%;
+  text-align: left;
+  font-size: 1.1rem;
+  color: #6449ff;         /* violet */
+  &.logout {
+    color: #e53935;       /* rouge */
+  }
+}
+
+/* Responsive : passe en “mobile” sous 768px */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+  .mobile-menu {
+    display: inline-flex;
+  }
+}

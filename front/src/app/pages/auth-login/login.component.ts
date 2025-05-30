@@ -34,7 +34,7 @@ export class LoginComponent {
     };
 
     this.auth.login(payload).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => this.router.navigate(['/articles']),
       error: err => {
         this.error = err.error?.message || 'Échec de la connexion';
       }

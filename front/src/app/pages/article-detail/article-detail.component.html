@@ -1,17 +1,27 @@
 <article *ngIf="article">
   <h1>{{ article.title }}</h1>
-  <p class="meta">{{ article.createdAt | date:'short' }} — {{ article.authorId }}</p>
+  <p class="meta">
+    {{ article.createdAt | date:'short' }} —
+    <span class="author-badge">{{ article.authorName | slice:0:2 | uppercase }}</span>
+    {{ article.authorName }}
+  </p>
   <div class="content">{{ article.content }}</div>
 </article>
 
 <section class="comments">
   <h2>Commentaires</h2>
-  <mat-list>
-    <mat-list-item *ngFor="let c of comments">
-      <p>{{ c.content }}</p>
-      <small>{{ c.createdAt | date:'short' }} par {{ c.authorId }}</small>
-    </mat-list-item>
-  </mat-list>
+  <div class="comments-container">
+    <div *ngFor="let c of comments" class="comment-bubble">
+      <div class="comment-header">
+        <span class="author-badge">{{ c.authorName | slice:0:2 | uppercase }}</span>
+        <span class="author-name">{{ c.authorName }}</span>
+        <span class="date">{{ c.createdAt | date:'short' }}</span>
+      </div>
+      <div class="comment-content">
+        {{ c.content }}
+      </div>
+    </div>
+  </div>
 
   <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
     <mat-form-field appearance="fill">

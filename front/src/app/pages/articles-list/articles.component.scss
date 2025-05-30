@@ -1,15 +1,50 @@
-.articles-container {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.articles-page {
   padding: 1rem;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    h1 { margin: 0; font-size: 1.5rem; }
+  }
+
+  .sort {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+    span { margin-right: .5rem; font-weight: 500; }
+  }
+
+  .articles-container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .article-card {
+    cursor: pointer;
+    transition: box-shadow .2s;
+    &:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+
+    mat-card-header {
+      mat-card-title {
+        font-weight: bold;
+      }
+      mat-card-subtitle {
+        font-size: .9rem;
+        color: rgba(0,0,0,.6);
+      }
+    }
+    mat-card-content {
+      margin-top: .5rem;
+      color: rgba(0,0,0,.8);
+      font-size: .95rem;
+    }
+  }
 }
 
-.article-card {
-  cursor: pointer;
-}
-.error {
-  color: red;
-  text-align: center;
-  margin-top: 2rem;
+@media (max-width: 600px) {
+  .articles-container { grid-template-columns: 1fr; }
 }

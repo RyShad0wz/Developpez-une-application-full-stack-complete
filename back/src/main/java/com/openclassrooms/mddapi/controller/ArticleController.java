@@ -1,30 +1,65 @@
-/* package com.openclassrooms.mddapi.controller;
+package com.openclassrooms.mddapi.controller;
 
-import com.openclassrooms.mddapi.dto.PostDto;
-import com.openclassrooms.mddapi.service.PostService;
+import com.openclassrooms.mddapi.dto.ArticleDto;
+import com.openclassrooms.mddapi.dto.CreateArticleRequest;
+import com.openclassrooms.mddapi.service.ArticleService;
+import com.openclassrooms.mddapi.service.UserService;
+import com.openclassrooms.mddapi.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/posts")
-public class PostController {
+@RequestMapping("/api/articles")
+public class ArticleController {
+
+    private final ArticleService articleService;
+    private final UserService userService;
+
     @Autowired
-    private PostService postService;
+    public ArticleController(ArticleService articleService, UserService userService) {
+        this.articleService = articleService;
+        this.userService = userService;
+    }
 
+    // ---- CREATE ----
     @PostMapping
-    public ResponseEntity<PostDto> create(@RequestBody PostDto dto) {
-        return ResponseEntity.ok(postService.createPost(dto));
+    public ArticleDto create(@RequestBody CreateArticleRequest req, Authentication authentication) {
+        String email = authentication.getName();
+        UserDto user = userService.getUserByEmail(email);
+        Long userId = user.getId();
+        return articleService.create(req, userId);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PostDto> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(postService.getPostById(id));
-    }
-
+    // ---- READ (ALL) ----
     @GetMapping
-    public ResponseEntity<List<PostDto>> getAll() {
-        return ResponseEntity.ok(postService.getAllPosts());
+    public List<ArticleDto> getAll(@RequestParam(defaultValue = "desc") String direction) {
+        return articleService.getAll(direction);
     }
-} */
+
+    // ---- READ (BY ID) ----
+    @GetMapping("/{id}")
+    public ArticleDto getById(@PathVariable Long id) {
+        return articleService.getById(id);
+    }
+
+    // ---- UPDATE ----
+    @PutMapping("/{id}")
+    public ArticleDto update(@PathVariable Long id, @RequestBody CreateArticleRequest req, Authentication authentication) {
+        String email = authentication.getName();
+        UserDto user = userService.getUserByEmail(email);
+        Long userId = user.getId();
+        return articleService.update(id, req, userId);
+    }
+
+    // ---- DELETE ----
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id, Authentication authentication) {
+        String email = authentication.getName();
+        UserDto user = userService.getUserByEmail(email);
+        Long userId = user.getId();
+        articleService.delete(id, userId);
+    }
+}

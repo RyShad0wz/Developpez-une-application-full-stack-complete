@@ -1,8 +1,6 @@
-// src/app/shared/shared.module.ts
 import { NgModule }             from '@angular/core';
 import { CommonModule }         from '@angular/common';
-
-// Angular Material modules
+import { RouterModule } from '@angular/router'; 
 import { MatButtonModule }      from '@angular/material/button';
 import { MatInputModule }       from '@angular/material/input';
 import { MatToolbarModule }     from '@angular/material/toolbar';
@@ -21,11 +19,10 @@ import { NavbarComponent }      from './components/navbar/navbar.component';
 @NgModule({
   declarations: [
     NavbarComponent
-    // ajoute ici d'autres composants partagés si besoin
   ],
   imports: [
     CommonModule,
-    // Angular Material modules
+    RouterModule,
     MatButtonModule,
     MatInputModule,
     MatToolbarModule,
@@ -41,7 +38,7 @@ import { NavbarComponent }      from './components/navbar/navbar.component';
   exports: [
     // On ré-exporte tout ce qui doit être disponible partout :
     CommonModule,
-    // Modules Material
+    RouterModule,
     MatButtonModule,
     MatInputModule,
     MatToolbarModule,

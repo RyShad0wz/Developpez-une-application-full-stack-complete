@@ -1,10 +1,13 @@
-<div class="topics-container" *ngIf="!error">
-  <mat-card *ngFor="let t of topics" class="topic-card">
-    <mat-card-title>{{ t.name }}</mat-card-title>
-    <mat-card-content>{{ t.description }}</mat-card-content>
-    <button mat-button color="primary" (click)="subscribe(t.id)">
-      S’abonner
-    </button>
-  </mat-card>
+<div class="topics-page">
+  <h1>Thèmes</h1>
+  <div class="topics-container">
+    <mat-card
+      *ngFor="let t of topics"
+      class="topic-card"
+      (click)="viewTopic(t.id)"
+    >
+      <mat-card-title>{{ t.name }}</mat-card-title>
+      <mat-card-content>{{ t.description }}</mat-card-content>
+    </mat-card>
+  </div>
 </div>
-<div class="error" *ngIf="error">{{ error }}</div>

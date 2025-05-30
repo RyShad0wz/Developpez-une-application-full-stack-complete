@@ -20,7 +20,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id", nullable = false)
-    private Post article;
+    private Article article;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -28,7 +28,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String content, User author, Post article) {
+    public Comment(String content, User author, Article article) {
         this.content = content;
         this.author = author;
         this.article = article;
@@ -59,11 +59,11 @@ public class Comment {
         this.author = author;
     }
 
-    public Post getArticle() {
+    public Article getArticle() {
         return article;
     }
 
-    public void setArticle(Post article) {
+    public void setArticle(Article article) {
         this.article = article;
     }
 
