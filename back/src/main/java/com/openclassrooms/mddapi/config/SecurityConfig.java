@@ -51,11 +51,11 @@ public class SecurityConfig {
                     .permitAll()
 
                     // 3) Lecture publique des articles & topics
-                    .requestMatchers(HttpMethod.GET, "/api/articles/**", "/api/topics/**", "/api/comments/**")
+                    .requestMatchers(HttpMethod.GET, "/api/articles/**", "/api/topics/**", "/api/comments/**, /api/subscriptions/**")
                     .permitAll()
 
                     // 4) Toutes les autres API nécessitent un token
-                    .requestMatchers("/api/**")
+                    .requestMatchers("/api/**", "/api/user/me")
                     .authenticated()
 
                     // 5) Fallback (ne devrait pas arriver si vous n'avez pas d'autres endpoints)

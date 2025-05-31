@@ -8,6 +8,7 @@ import com.openclassrooms.mddapi.repository.TopicRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,14 +31,17 @@ public class SubscriptionService {
         subscriptionRepository.save(sub);
     }
 
+    @Transactional
     public void unsubscribe(Long userId, Long topicId) {
         subscriptionRepository.deleteByUserIdAndTopicId(userId, topicId);
     }
 
     public List<TopicDto> getSubscribedTopics(Long userId) {
-        return subscriptionRepository.findByUserId(userId).stream()
-                .map(sub -> new TopicDto(sub.getTopic().getId(), sub.getTopic().getName(), sub.getTopic().getDescription()))
+        // Utilise la requête qui va vraiment chercher les Topic
+        return subscriptionRepository.findTopicsByUserId(userId).stream()
+                .map(topic -> new TopicDto(topic.getId(), topic.getName(), topic.getDescription()))
                 .collect(Collectors.toList());
     }
+
 }
 

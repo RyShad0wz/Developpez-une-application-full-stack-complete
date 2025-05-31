@@ -54,7 +54,7 @@ public class AuthService {
       .authorities("ROLE_USER")
       .build();
 
-    String token = jwtService.generateToken(userDetails);
+    String token = jwtService.generateToken(userDetails, user.getId());
 
     return new AuthenticationResponse(token);
   }
@@ -83,7 +83,7 @@ public class AuthService {
       .authorities("ROLE_USER")
       .build();
 
-    String token = jwtService.generateToken(userDetails);
+    String token = jwtService.generateToken(userDetails, user.getId());
 
     return new AuthenticationResponse(token);
   }
