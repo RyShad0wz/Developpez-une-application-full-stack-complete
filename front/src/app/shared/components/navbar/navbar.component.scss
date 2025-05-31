@@ -1,19 +1,22 @@
+/* ─── 1) Toolbar fixe en haut ─────────────────────────────────────────────── */
 
 .mat-toolbar {
-  background: #ffffff;
+  background: #fff;
   height: 64px;
   padding: 0 1rem;
   display: flex;
   align-items: center;
-  box-shadow: none;      
+  box-shadow: 0 2px 12px rgba(100, 73, 255, 0.03);
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Au-dessus du contenu principal */
 }
 
 /* Logo cliquable */
 .logo {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  max-height: 80px;        /* réduit la hauteur du logo */
-  cursor: pointer;         /* indique que c’est cliquable */
+  margin: 10px 0;
+  max-height: 48px;
+  cursor: pointer;
 }
 
 /* Espace flexible pour pousser le menu à droite */
@@ -21,7 +24,8 @@
   flex: 1 1 auto;
 }
 
-/* Menu desktop : boutons alignés horizontalement */
+/* ─── 2) Menu Desktop (pour écrans ≥ 769px) ───────────────────────────────── */
+
 .desktop-menu {
   display: flex;
   align-items: center;
@@ -29,44 +33,109 @@
   button[mat-button] {
     margin-left: 0.5rem;
     font-weight: 500;
-    color: rgb(0, 0, 0);         /* s’assure que le texte reste blanc */
+    color: #2e2151; /* Couleur texte noir/violette */
+    background: none;
   }
 
-  mat-icon-button {
-    margin-left: 0.5rem;
-    color: rgb(5, 5, 5);
+  /* Bouton “Se déconnecter” en rouge */
+  .logout {
+    color: #e53935 !important;
+  }
+
+  /* Icône user ronde */
+  .user-btn {
+    margin-left: 0.8rem;
+    color: #111 !important;    /* Icône noire */
+    background: #eee;
+    border-radius: 50%;
+    transition: background 0.18s;
+    &:hover {
+      background: #d1caff;
+    }
   }
 }
 
-  button.logout {
-    color: #e53935 !important; /* rouge vif */
-  }
+/* ─── 3) Bouton burger (caché en desktop, affiché en mobile) ──────────────── */
 
-
-/* Bouton hamburger caché en desktop */
 .mobile-menu {
-  display: none;
-  color: rgb(0, 0, 0);
+  display: none; /* On l’affiche uniquement en mobile (via media query) */
+  color: #222;
 }
 
+/* ─── 4) Container du drawer (positionné SOUS la toolbar) ─────────────────── */
 
+.navbar-drawer-container {
+  position: absolute;
+  top: 64px;              /* Juste en dessous de la toolbar */
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 64px);
+  z-index: 999;           /* Sous la toolbar mais au-dessus du contenu */
+}
 
-mat-drawer button[mat-list-item] {
+/* ─── 5) Mise en forme du drawer (la sidebar) ─────────────────────────────── */
+
+.drawer-content {
+  background: #fff;
+  width: 240px;           /* Largeur du menu */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.2rem 1rem;
+  gap: 0.6rem;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.drawer-content button[mat-list-item] {
   width: 100%;
   text-align: left;
   font-size: 1.1rem;
-  color: #6449ff;         /* violet */
-  &.logout {
-    color: #e53935;       /* rouge */
+  color: #6449ff;         /* Texte violet */
+  font-weight: 600;
+  border-radius: 0.6rem;
+  background: none;
+  transition: background 0.16s;
+  &:hover {
+    background: #f4f1ff;
   }
 }
 
-/* Responsive : passe en “mobile” sous 768px */
+.drawer-content button.logout {
+  color: #e53935 !important;
+}
+
+.drawer-content button.user-btn {
+  color: #111 !important;
+  background: #eee;
+  border-radius: 50%;
+  margin-top: 1.2rem;
+  align-self: flex-start;
+  &:hover {
+    background: #d1caff;
+  }
+}
+
+/* ─── 6) MASQUER COMPLETEMENT LE DRAWER EN DESKTOP ────────────────────────── */
+
+@media (min-width: 769px) {
+  .navbar-drawer-container {
+    display: none !important;
+  }
+}
+
+/* ─── 7) Afficher le burger et cacher le desktop-menu en mobile ───────────── */
+
 @media (max-width: 768px) {
   .desktop-menu {
-    display: none;
+    display: none !important;
   }
   .mobile-menu {
-    display: inline-flex;
+    display: inline-flex !important;
+  }
+  .mat-toolbar {
+    padding: 0 0.5rem;
+  }
+  .logo {
+    max-height: 38px;
   }
 }

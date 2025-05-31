@@ -14,7 +14,11 @@ export class NavbarComponent {
   ) {}
 
   goHome() {
-    this.router.navigate(['/']);
+    if (this.auth.isLogged()) {
+      this.router.navigate(['/articles']);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   logout() {
