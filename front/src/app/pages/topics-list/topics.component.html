@@ -1,13 +1,23 @@
-<div class="topics-page">
-  <h1>Thèmes</h1>
-  <div class="topics-container">
-    <mat-card
-      *ngFor="let t of topics"
-      class="topic-card"
-      (click)="viewTopic(t.id)"
-    >
-      <mat-card-title>{{ t.name }}</mat-card-title>
-      <mat-card-content>{{ t.description }}</mat-card-content>
-    </mat-card>
+<section class="topics-list">
+  <div class="topics-grid">
+    <div class="topic-card" *ngFor="let topic of topics">
+      <h3>{{ topic.name }}</h3>
+      <p>{{ topic.description }}</p>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="!isSubscribed(topic.id)"
+        (click)="subscribe(topic.id)">
+        S'abonner
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        disabled
+        *ngIf="isSubscribed(topic.id)">
+        Déjà abonné
+      </button>
+    </div>
   </div>
-</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+</section>

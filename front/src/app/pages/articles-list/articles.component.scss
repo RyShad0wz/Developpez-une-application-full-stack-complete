@@ -1,50 +1,95 @@
 .articles-page {
-  padding: 1rem;
+  padding: 2rem 0 0 0;
+  max-width: 1050px;
+  margin: 0 auto;
 
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    h1 { margin: 0; font-size: 1.5rem; }
+    margin-bottom: 2rem;
+    gap: 1rem;
   }
 
-  .sort {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 1rem;
-    span { margin-right: .5rem; font-weight: 500; }
+  .purple-btn {
+    background: #7d53e0 !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 11px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.07rem;
+    box-shadow: 0 2px 8px rgba(123, 75, 255, 0.13);
+    letter-spacing: 0.01em;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #5320a8 !important;
+    }
+  }
+
+  .sort-btn {
+    border-radius: 11px;
+    color: #6d34c8 !important;
+    border: 1.5px solid #cbb6f2 !important;
+    background: #f7f3ff !important;
+    font-weight: 500;
+    min-width: 145px;
+    transition: background 0.16s, color 0.2s;
+    box-shadow: none;
+
+    &:hover {
+      background: #ece4ff !important;
+      border-color: #a984e0 !important;
+    }
   }
 
   .articles-container {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    margin-top: 0.7rem;
   }
 
   .article-card {
+    background: #f8f6ff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px rgba(80, 32, 143, 0.09);
+    padding: 0.5rem 0.7rem 1.2rem 0.7rem;
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
-    transition: box-shadow .2s;
-    &:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+    transition: box-shadow .19s, transform 0.13s;
+
+    &:hover {
+      box-shadow: 0 8px 28px rgba(123, 75, 255, 0.13);
+      transform: translateY(-2px) scale(1.011);
+    }
 
     mat-card-header {
+      padding-bottom: 0.3rem;
       mat-card-title {
-        font-weight: bold;
+        color: #6d34c8;
+        font-weight: 700;
+        font-size: 1.15rem;
+        margin-bottom: .2rem;
       }
       mat-card-subtitle {
-        font-size: .9rem;
-        color: rgba(0,0,0,.6);
+        font-size: .93rem;
+        color: #a08fbb;
+        font-weight: 500;
       }
     }
+
     mat-card-content {
       margin-top: .5rem;
-      color: rgba(0,0,0,.8);
-      font-size: .95rem;
+      color: #403a4d;
+      font-size: 1rem;
+      font-weight: 400;
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .articles-container { grid-template-columns: 1fr; }
+  .header { flex-direction: column; gap: 1.2rem; }
 }

@@ -5,7 +5,7 @@ import { User }       from '../interfaces/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private API = '/api/users';
+  private API = '/api/user';
 
   constructor(private http: HttpClient) {}
 
@@ -21,8 +21,11 @@ export class UserService {
     return this.http.put<User>(`${this.API}/${id}`, data);
   }
 
-  /** Récupère les infos de l’utilisateur courant */
-  getCurrentUser(): Observable<User> {
+   updateCurrentUser(data: Partial<User & { password?: string }>): Observable<User> {
+    return this.http.put<User>(`${this.API}/me`, data);
+  }
+
+    getCurrentUser(): Observable<User> {
     return this.http.get<User>(`${this.API}/me`);
   }
 }

@@ -3,7 +3,7 @@
   <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="profile-form">
     <mat-form-field appearance="fill">
       <mat-label>Nom d’utilisateur</mat-label>
-      <input matInput formControlName="username" />
+      <input matInput formControlName="name" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -21,15 +21,21 @@
     </button>
   </form>
 
-  <h3>Mes abonnements</h3>
-  <mat-list>
-    <mat-list-item *ngFor="let s of subscriptions">
-      <span>Thème {{ s.topicId }}</span>
-      <button mat-button color="warn" (click)="unsubscribe(s.topicId)">
+<h3>Mes abonnements</h3>
+<div class="abonnements-list">
+  <div *ngFor="let topic of subscriptions" class="abonnement-card">
+    <div class="abonnement-content">
+      <div>
+        <div class="abonnement-title">{{ topic.name }}</div>
+        <div class="abonnement-desc">{{ topic.description }}</div>
+      </div>
+      <button mat-raised-button color="primary" class="unsub-btn" (click)="unsubscribe(topic.id)">
         Se désabonner
       </button>
-    </mat-list-item>
-  </mat-list>
+    </div>
+  </div>
+  <div *ngIf="subscriptions.length === 0" class="no-abonnement">Aucun abonnement pour le moment.</div>
+</div>
 </section>
 
 <div class="error" *ngIf="error">{{ error }}</div>

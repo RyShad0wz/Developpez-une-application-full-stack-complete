@@ -4,6 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule }        from '@angular/common/http';
 import { ReactiveFormsModule }     from '@angular/forms';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+
 import { AppRoutingModule }        from './app-routing.module';
 import { CoreModule }              from './core/core.module';
 import { SharedModule }            from './shared/shared.module';
@@ -29,6 +32,13 @@ import { ProfileComponent }        from './pages/profile/profile.component';
     ArticleCreateComponent,
     ArticleDetailComponent,
     ProfileComponent
+  ],
+    providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
   { path: 'articles/new', component: ArticleCreateComponent, canActivate: [AuthGuard] },
   { path: 'articles/:id', component: ArticleDetailComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'me', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 

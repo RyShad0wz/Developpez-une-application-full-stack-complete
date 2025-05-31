@@ -37,4 +37,15 @@ export class ArticlesComponent implements OnInit {
   view(id: number) {
     this.router.navigate(['/articles', id]);
   }
+
+  sortOldestFirst = true;
+
+sortByDate() {
+  this.articles = [...this.articles].sort((a, b) => {
+    const dateA = new Date(a.createdAt).getTime();
+    const dateB = new Date(b.createdAt).getTime();
+    return this.sortOldestFirst ? dateA - dateB : dateB - dateA;
+  });
+  this.sortOldestFirst = !this.sortOldestFirst;
+}
 }

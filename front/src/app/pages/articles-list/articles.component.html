@@ -1,9 +1,12 @@
 <div class="articles-page">
   <div class="header">
-    <h1>Articles</h1>
-    <button mat-flat-button color="accent" routerLink="/articles/new">
+    <button mat-raised-button color="primary" class="purple-btn" routerLink="/articles/new">
       Créer un article
     </button>
+<button mat-stroked-button class="sort-btn" (click)="sortByDate()">
+  Trier par date
+</button>
+
   </div>
 
   <div class="articles-container">
@@ -12,15 +15,17 @@
       class="article-card"
       routerLink="/articles/{{ a.id }}"
     >
-      <mat-card-header>
-        <mat-card-title>{{ a.title }}</mat-card-title>
-<mat-card-subtitle>
-  {{ a.createdAt | date:'short' }} — Auteur : {{ a.authorId }}
-</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        {{ a.content | slice:0:120 }}…
-      </mat-card-content>
+<mat-card-header>
+  <mat-card-title>{{ a.title }}</mat-card-title>
+  <mat-card-subtitle>
+     <div style="margin-top: 10px;"></div>
+    {{ a.createdAt | date:'dd/MM/yyyy' }} — {{ a.authorName || 'Non renseigné' }}
+  </mat-card-subtitle>
+</mat-card-header>
+<mat-card-content>
+  <div style="margin-top: 5px;"></div> <!-- Saut de ligne visuel -->
+  {{ a.content | slice:0:120 }}…
+</mat-card-content>
     </mat-card>
   </div>
 </div>

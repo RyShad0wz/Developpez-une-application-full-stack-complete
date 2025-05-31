@@ -81,6 +81,12 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}")
+    public UserDto updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest request) {
+
+        return userService.updateUser(id, request);
+    }
+
 
     @PostMapping("/register")
     @Operation(summary = "Créer un nouvel utilisateur", description = "Enregistre un nouvel utilisateur avec les informations fournies")

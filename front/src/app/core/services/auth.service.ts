@@ -55,15 +55,16 @@ export class AuthService {
     }
   }
 
-  getCurrentUserId(): string | null {
-    const token = this.getToken();
-    if (!token) return null;
-    try {
-      const [, payload] = token.split('.');
-      const decoded = JSON.parse(atob(payload));
-      return decoded.userId as string;
-    } catch {
-      return null;
-    }
+getCurrentUserId(): number | null {
+  const token = this.getToken();
+  if (!token) return null;
+  try {
+    const [, payload] = token.split('.');
+    const decoded = JSON.parse(atob(payload));
+    return Number(decoded.userId); // conversion explicite !
+  } catch {
+    return null;
   }
+}
+
 }

@@ -13,7 +13,7 @@ export class RegisterComponent {
   error?: string;
 
   registerForm = this.fb.group({
-    username: ['', Validators.required],
+    name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     confirm: ['', Validators.required]
@@ -34,9 +34,9 @@ export class RegisterComponent {
   submit() {
     if (this.registerForm.invalid) { return; }
 
-    const { username, email, password } = this.registerForm.value;
+    const { name, email, password } = this.registerForm.value;
     const payload: RegisterRequest = {
-      name: username!,
+      name: name!,
       email: email!,
       password: password!
     };
