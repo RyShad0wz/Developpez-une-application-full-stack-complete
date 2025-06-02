@@ -10,6 +10,7 @@ import { Article } from '../../core/interfaces/article.interface';
 })
 export class ArticlesComponent implements OnInit {
   articles: Article[] = [];
+  sortOldestFirst = true; // toggle pour tri chronologique
 
   constructor(
     private articleService: ArticleService,
@@ -20,32 +21,27 @@ export class ArticlesComponent implements OnInit {
     this.loadArticles();
   }
 
-  private loadArticles() {
-    this.articleService.getAllArticles()
-      .subscribe({
-        next: (data: Article[]) => this.articles = data,
-        error: (err: any) => console.error(err)
-      });
+  private loadArticles(): void {
+    this.articleService.getAllArticles().subscribe({
+      next: (data: Article[]) => this.articles = data,
+      error: (err: any) => console.error('Error loading articles:', err)
+    });
   }
 
-  /** Aller à la création d’article */
-  create() {
-    this.router.navigate(['/articles/create']);
+  create(): void {
+    this.router.navigate(['/articles/new']);
   }
 
-  /** Aller au détail */
-  view(id: number) {
+  view(id: number): void {
     this.router.navigate(['/articles', id]);
   }
 
-  sortOldestFirst = true;
-
-sortByDate() {
-  this.articles = [...this.articles].sort((a, b) => {
-    const dateA = new Date(a.createdAt).getTime();
-    const dateB = new Date(b.createdAt).getTime();
-    return this.sortOldestFirst ? dateA - dateB : dateB - dateA;
-  });
-  this.sortOldestFirst = !this.sortOldestFirst;
-}
+  sortByDate(): void {
+    this.articles = [...this.articles].sort((a, b) => {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return this.sortOldestFirst ? dateA - dateB : dateB - dateA;
+    });
+    this.sortOldestFirst = !this.sortOldestFirst;
+  }
 }

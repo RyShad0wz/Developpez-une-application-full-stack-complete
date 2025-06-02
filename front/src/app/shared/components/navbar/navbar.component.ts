@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Router }    from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { AuthService } from './../../../core/services/auth.service';
 
 @Component({
@@ -8,6 +9,9 @@ import { AuthService } from './../../../core/services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  @Input() drawer?: MatDrawer;
+  @Input() isVisitor = false;
+
   constructor(
     public auth: AuthService,
     private router: Router
@@ -24,5 +28,6 @@ export class NavbarComponent {
   logout() {
     this.auth.logout();
     this.router.navigate(['/']);
+    this.drawer?.close();
   }
 }

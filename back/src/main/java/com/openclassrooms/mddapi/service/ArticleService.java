@@ -12,6 +12,7 @@ import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +34,7 @@ public class ArticleService {
         this.topicRepository = topicRepository;
     }
 
+    @Transactional
     public List<ArticleDto> getAll(String direction) {
         Sort sort = Sort.by(
                 "asc".equalsIgnoreCase(direction) ? Sort.Direction.ASC : Sort.Direction.DESC,
@@ -110,7 +112,9 @@ public class ArticleService {
                 art.getTitle(),
                 art.getContent(),
                 art.getAuthor().getId(),
+                art.getAuthor().getName(),
                 art.getTopic().getId(),
+                art.getTopic().getName(),
                 art.getCreatedAt()
         );
     }

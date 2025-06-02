@@ -18,11 +18,11 @@ public class TopicSeeder {
     public void seedTopics() {
         // Liste des topics à créer
         List<Topic> topics = List.of(
-                new Topic("Actualités", "Toute l'actualité récente et chaude."),
+                new Topic("Java", "Toute l'actualité concernant Java"),
                 new Topic("Développement", "Discussions sur le développement logiciel, frameworks, etc."),
-                new Topic("Ecologie", "Partage de conseils et actualités autour de l'écologie."),
-                new Topic("Sport", "Actualités, résultats et débats sportifs."),
-                new Topic("Culture", "Cinéma, musique, livres et tous les loisirs culturels.")
+                new Topic("Python", "Retrouvez toutes les news sur Python"),
+                new Topic("React", "Toutes les infos sur React et son écosystème"),
+                new Topic("JavaScript", "Les dernières tendances en JavaScript")
         );
 
         for (Topic topic : topics) {

@@ -1,5 +1,6 @@
 .profile-container {
   max-width: 600px;
+  min-height: calc(100vh - 64px);
   margin: 2rem auto;
 }
 
@@ -29,7 +30,7 @@ mat-list-item {
   background: #f6f2fd; // violet très clair, adapte si tu veux
   border-radius: 18px;
   box-shadow: 0 6px 32px 0 rgba(112, 78, 235, 0.10);
-  padding: 1.2rem 1.4rem;
+  padding: 0rem 1.4rem;
   display: flex;
   align-items: center;
   min-height: 110px;

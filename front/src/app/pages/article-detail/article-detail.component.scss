@@ -1,6 +1,7 @@
 article {
   max-width: 600px;
   margin: 3rem auto 2rem auto;
+  min-height: calc(100vh - 64px);
   background: #f8f6ff;
   border-radius: 1.2rem;
   box-shadow: 0 4px 24px rgba(80, 32, 143, 0.10);

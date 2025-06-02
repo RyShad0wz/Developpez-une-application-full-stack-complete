@@ -4,6 +4,7 @@
     {{ article.createdAt | date:'short' }} —
     <span class="author-badge">{{ article.authorName | slice:0:2 | uppercase }}</span>
     {{ article.authorName }}
+     <span class="theme-badge">• {{ article.topicName }}</span>
   </p>
   <div class="content">{{ article.content }}</div>
 </article>

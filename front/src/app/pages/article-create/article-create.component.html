@@ -1,28 +1,38 @@
-<form [formGroup]="form" (ngSubmit)="submit()" class="article-form">
-  <h2>Nouvel article</h2>
+<!-- article-create.component.html -->
+<div class="article-create-page">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Titre</mat-label>
-    <input matInput formControlName="title" />
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Contenu</mat-label>
-    <textarea matInput formControlName="content" rows="6"></textarea>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Thème</mat-label>
-    <mat-select formControlName="topicId">
-      <mat-option *ngFor="let t of topics" [value]="t.id">
-        {{ t.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div class="error" *ngIf="error">{{ error }}</div>
-
-  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-    Publier
+  <!-- 1) Bouton “Retour” en haut à gauche -->
+  <button mat-icon-button class="back-btn" (click)="goBack()" aria-label="Retour">
+    <mat-icon>arrow_back</mat-icon>
   </button>
-</form>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="article-form">
+    <h2>Créer un nouvel article</h2>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sélectionner un thème</mat-label>
+      <mat-select formControlName="topicId">
+        <mat-option *ngFor="let t of topics" [value]="t.id">
+          {{ t.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Titre de l'article</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contenu de l'article</mat-label>
+      <textarea matInput formControlName="content" rows="6"></textarea>
+    </mat-form-field>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <!-- 2) Bouton “Créer” de largeur ajustée au contenu -->
+    <button mat-raised-button color="primary" type="submit" class="create-btn" [disabled]="form.invalid">
+      Créer
+    </button>
+  </form>
+</div>

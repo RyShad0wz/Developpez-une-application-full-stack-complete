@@ -5,5 +5,6 @@ export interface Article {
   authorId: number;
   authorName: string;
   topicId: number;
+  topicName: string;
   createdAt: string;
 }

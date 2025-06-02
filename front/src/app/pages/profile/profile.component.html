@@ -1,5 +1,5 @@
 <section class="profile-container">
-  <h2>Mon profil</h2>
+  <h2>Profil utilisateur</h2>
   <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="profile-form">
     <mat-form-field appearance="fill">
       <mat-label>Nom d’utilisateur</mat-label>
@@ -17,11 +17,11 @@
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit">
-      Mettre à jour
+      Sauvegarder
     </button>
   </form>
 
-<h3>Mes abonnements</h3>
+<h3>Abonnements</h3>
 <div class="abonnements-list">
   <div *ngFor="let topic of subscriptions" class="abonnement-card">
     <div class="abonnement-content">

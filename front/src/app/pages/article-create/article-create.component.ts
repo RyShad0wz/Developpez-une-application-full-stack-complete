@@ -1,9 +1,10 @@
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TopicService }           from '../../core/services/topic.service';
-import { ArticleService }         from '../../core/services/article.service';
-import { Topic }               from '../../core/interfaces/topic.interface';
-import { Router }                 from '@angular/router';
+import { TopicService } from '../../core/services/topic.service';
+import { ArticleService } from '../../core/services/article.service';
+import { Topic } from '../../core/interfaces/topic.interface';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';  // <-- importer Location
 
 @Component({
   selector: 'app-article-create',
@@ -19,7 +20,8 @@ export class ArticleCreateComponent implements OnInit {
     private fb: FormBuilder,
     private topicService: TopicService,
     private articleService: ArticleService,
-    private router: Router
+    private router: Router,
+    private location: Location     // <-- injecter Location
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,11 @@ export class ArticleCreateComponent implements OnInit {
       data => this.topics = data,
       err => this.error = err.message
     );
+  }
+
+  // Méthode appelée par la flèche “back”
+  goBack(): void {
+    this.location.back();
   }
 
   submit(): void {
