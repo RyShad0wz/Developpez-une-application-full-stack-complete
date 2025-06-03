@@ -1,3 +1,7 @@
+  <button mat-icon-button class="back-btn" (click)="goBack()" aria-label="Retour">
+  <mat-icon>arrow_back</mat-icon>
+  </button>
+
 <form [formGroup]="registerForm" (ngSubmit)="submit()" class="auth-form">
   <h2>S’inscrire</h2>
 
@@ -29,15 +33,6 @@
     <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
       Minimum 8 caractères
     </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Confirmer mot de passe</mat-label>
-    <input matInput type="password" formControlName="confirm" />
-<mat-error *ngIf="registerForm.hasError('notMatching')">
-  Les mots de passe ne correspondent pas
-</mat-error>
-
   </mat-form-field>
 
   <div class="error" *ngIf="error">{{ error }}</div>

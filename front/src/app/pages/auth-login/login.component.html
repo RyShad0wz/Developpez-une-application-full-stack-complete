@@ -1,4 +1,9 @@
+  <button mat-icon-button class="back-btn" (click)="goBack()" aria-label="Retour">
+  <mat-icon>arrow_back</mat-icon>
+  </button>
+
 <form [formGroup]="loginForm" (ngSubmit)="submit()" class="auth-form">
+  
   <h2>Se connecter</h2>
 
   <mat-form-field appearance="fill">

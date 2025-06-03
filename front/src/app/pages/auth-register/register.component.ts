@@ -3,6 +3,7 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { RegisterRequest } from '../../core/interfaces/auth-request.interface';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -15,21 +16,15 @@ export class RegisterComponent {
   registerForm = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
-    confirm: ['', Validators.required]
-  }, { validators: this.passwordsMatch });
+    password: ['', [Validators.required, Validators.minLength(8)]]
+  });
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
-
-  private passwordsMatch(group: AbstractControl) {
-    const pw = group.get('password')?.value;
-    const co = group.get('confirm')?.value;
-    return pw === co ? null : { notMatching: true };
-  }
 
   submit() {
     if (this.registerForm.invalid) { return; }
@@ -47,5 +42,9 @@ export class RegisterComponent {
         this.error = err.error?.message || 'Échec de l’inscription';
       }
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

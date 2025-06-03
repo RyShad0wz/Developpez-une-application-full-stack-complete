@@ -1,38 +1,45 @@
-<article *ngIf="article">
-  <h1>{{ article.title }}</h1>
-  <p class="meta">
-    {{ article.createdAt | date:'short' }} —
-    <span class="author-badge">{{ article.authorName | slice:0:2 | uppercase }}</span>
-    {{ article.authorName }}
-     <span class="theme-badge">• {{ article.topicName }}</span>
-  </p>
-  <div class="content">{{ article.content }}</div>
-</article>
+<div class="article-detail-page">
+  <button mat-icon-button class="back-btn" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 
-<section class="comments">
-  <h2>Commentaires</h2>
-  <div class="comments-container">
-    <div *ngFor="let c of comments" class="comment-bubble">
-      <div class="comment-header">
-        <span class="author-badge">{{ c.authorName | slice:0:2 | uppercase }}</span>
+  <article *ngIf="article">
+    <h1>{{ article.title }}</h1>
+    <div style="height: 24px;"></div>
+    <p class="meta">
+      {{ article.createdAt | date:'short' }}
+      <span class="sep"></span>
+      {{ article.authorName }}
+      <span class="sep"></span>
+      {{ article.topicName }}
+    </p>
+    <div style="height: 24px;"></div>
+    <div class="content">{{ article.content }}</div>
+  </article>
+
+  <section class="comments">
+    <h2>Commentaires</h2>
+    <div style="height: 14px;"></div>
+    <div class="comments-container">
+      <div *ngFor="let c of comments" class="comment-bubble">
         <span class="author-name">{{ c.authorName }}</span>
-        <span class="date">{{ c.createdAt | date:'short' }}</span>
-      </div>
-      <div class="comment-content">
-        {{ c.content }}
+        <div class="comment-header">
+        </div>
+        <div class="comment-content">{{ c.content }}</div>
       </div>
     </div>
-  </div>
 
-  <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
-    <mat-form-field appearance="fill">
-      <mat-label>Ajouter un commentaire</mat-label>
-      <textarea matInput formControlName="content" rows="3"></textarea>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid">
-      Commenter
-    </button>
-  </form>
-</section>
+    <div style="height: 24px;"></div>
+    <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Écrivez ici votre commentaire</mat-label>
+        <textarea matInput formControlName="content" rows="3"></textarea>
+      </mat-form-field>
+      <button mat-icon-button type="submit" [disabled]="commentForm.invalid">
+        <mat-icon class="send-icon">send</mat-icon>
+      </button>
+    </form>
+  </section>
 
-<div class="error" *ngIf="error">{{ error }}</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+</div>

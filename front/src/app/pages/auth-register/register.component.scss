@@ -1,8 +1,9 @@
 .auth-form {
-  max-width: 400px;
+  max-width: 600px;
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 64px);
   gap: 1rem;
 }
 .error {
@@ -12,4 +13,20 @@
 .switch {
   text-align: center;
   margin-top: 1rem;
+}
+.back-btn {
+  position: absolute; 
+  top: 4rem;
+  left: 1.5rem;
+  color: #2e2151;
+  background: transparent;
+  box-shadow: none;
+
+  mat-icon {
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    background: rgba(123, 75, 255, 0.1);
+  }
 }

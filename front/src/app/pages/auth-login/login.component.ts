@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { LoginRequest } from '../../core/interfaces/auth-request.interface';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   submit() {
@@ -39,5 +41,9 @@ export class LoginComponent {
         this.error = err.error?.message || 'Échec de la connexion';
       }
     });
+  }
+
+  goBack(): void {
+  this.location.back();
   }
 }
