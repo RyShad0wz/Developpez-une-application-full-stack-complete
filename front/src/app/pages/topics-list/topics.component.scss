@@ -17,12 +17,13 @@
 }
 
 .topic-card {
-  background: #f8f6ff;
+  background: #f2f2f2;
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(80, 32, 143, 0.09);
   padding: 2rem 1.5rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1.2rem;
   min-height: 160px;
   transition: box-shadow 0.2s, transform 0.13s;
@@ -37,12 +38,12 @@
     margin: 0 0 0.7rem 0;
     font-size: 1.25rem;
     font-weight: 700;
-    color: #6d34c8;
+    color: #000000;
     letter-spacing: 0.01em;
   }
 
   p {
-    color: #555;
+    color: #000000;
     margin: 0 0 1.4rem 0;
     flex: 1 1 auto;
     font-size: 1.05rem;
@@ -50,7 +51,7 @@
   }
 
   button {
-    align-self: flex-end;
+    align-self: center;
     min-width: 140px;
     font-weight: 600;
     font-size: 1rem;
@@ -60,7 +61,7 @@
     transition: background 0.2s, color 0.2s;
 
     &.mat-primary {
-      background: #7d53e0;
+      background: #9164fa;
       color: #fff;
 
       &:hover {

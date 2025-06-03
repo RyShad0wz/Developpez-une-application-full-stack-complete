@@ -1,10 +1,13 @@
 .article-detail-page {
-  max-width: 600px;
-  margin: 2rem auto 2rem auto;
+  /* On augmente simplement la largeur max du conteneur principal */
+  max-width: 800px;     /* ← valeur augmentée */
+  margin: 2rem auto;
+  padding: 0 1rem;      /* petit espace à gauche/droite */
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
+  /* ---------- Bouton "Retour" ---------- */
   .back-btn {
     align-self: flex-start;
     color: #3d276c;
@@ -13,33 +16,45 @@
       font-size: 1.8rem;
     }
   }
-  
-    h1 {
-      margin: 0;
-      color: #000000;
-      font-size: 1.8rem;
+
+  /* ---------- Titre de l'article ---------- */
+  h1 {
+    margin: 0;
+    color: #000;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* ---------- Métadonnées (date • auteur • thème) ---------- */
+  .meta {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #000;
+    font-weight: 500;
+
+    .sep {
+      margin: 0 1.2rem;
     }
+  }
 
-    .meta {
-      display: flex;
-      align-items: center;
-      font-size: 0.95rem;
-      color: #000000;
-      font-weight: 500;
+  /* ---------- Contenu de l'article (sera plus large qu'avant) ---------- */
+  .content {
+    font-size: 1.1rem;
+    color: #23212b;
+    line-height: 1.7;
+    white-space: pre-line;
+  }
 
-      .sep {
-        margin: 0 1.2rem;
-      }
-    }
+  /* ---------- Ligne horizontale séparatrice ---------- */
+  hr.separator {
+    border: none;
+    border-bottom: 2px solid #ddd;
+    margin: 1.5rem 0;
+  }
 
-    .content {
-      font-size: 1.1rem;
-      color: #23212b;
-      line-height: 1.7;
-      white-space: pre-line;
-    }
-  
-
+  /* ---------- Section "Commentaires" ---------- */
   .comments {
     display: flex;
     flex-direction: column;
@@ -47,8 +62,10 @@
 
     h2 {
       margin: 0;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       color: #3d276c;
+      font-weight: 600;
+      text-align: left;
     }
 
     .comments-container {
@@ -57,70 +74,93 @@
       gap: 1rem;
     }
 
+    .comment-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+
+      @media (max-width: 700px) {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+    }
+
+    .author-name {
+      font-weight: 500;
+      color: #3d276c;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      min-width: 120px;
+
+      @media (max-width: 700px) {
+        min-width: auto;
+      }
+    }
+
     .comment-bubble {
       background: #f3f3f3;
       border-radius: 18px;
-      padding: 1rem 1.2rem;
+      padding: 1rem 1.2rem 1.2rem 1.2rem;
       box-shadow: 0 2px 8px #eee;
       position: relative;
       max-width: 100%;
+      flex: 1 1 auto;
 
-      .comment-header {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        margin-bottom: 0.3rem;
-        color: #6d41a1;
-        font-size: 0.97em;
-
-        .author-badge {
-          background: #7a4be6;
-          color: #fff;
-          border-radius: 50%;
-          width: 32px;
-          height: 32px;
-          line-height: 32px;
-          text-align: center;
-          font-weight: bold;
-          font-size: 1em;
-        }
-
-        .author-name {
-          font-weight: 500;
-          color: #3d276c;
-        }
-
-        .date {
-          margin-left: auto;
-          color: #b0b0b0;
-          font-size: 0.85em;
-        }
+      @media (max-width: 700px) {
+        width: 100%;
       }
+    }
 
-      .comment-content {
-        color: #222;
-        font-size: 1rem;
-        line-height: 1.4;
-      }
+    .comment-content {
+      color: #222;
+      font-size: 1rem;
+      line-height: 1.4;
     }
 
     .comment-form {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      width: 100%;
 
       mat-form-field {
-        flex: 1;
+        width: calc(100% - 48px);
+        margin: 0;
       }
 
-      .send-icon {
-        font-size: 1.6rem;
-        color: #7d53e0;
-        transform: rotate(-45deg);
-        transition: color 0.2s;
+      textarea.mat-input-element {
+        resize: none;
+        font-size: 1rem;
+        padding: 0.8rem 1rem 0.8rem 1rem;
+      }
 
-        &:hover {
+      button[type="submit"] {
+        position: static;
+        margin-left: 0.5rem;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
+
+        mat-icon.send-icon {
+          font-size: 1.8rem;
+          color: #7d53e0;
+          transform: rotate(-45deg);
+          transition: color 0.2s;
+        }
+
+        &:hover mat-icon.send-icon {
           color: #5320a8;
+        }
+
+        &:disabled mat-icon.send-icon {
+          color: #ccc;
+          cursor: default;
+        }
+      }
+
+      @media (max-width: 700px) {
+        mat-form-field {
+          width: calc(100% - 48px);
         }
       }
     }
@@ -137,20 +177,10 @@
     margin: 1rem 0;
     padding: 0 0.5rem;
 
-    article, .comments {
+    article,
+    .comments {
       padding: 1rem 0.4rem;
       max-width: 100vw;
-    }
-
-    .comment-form {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.5rem;
-
-      .send-icon {
-        align-self: flex-end;
-        transform: rotate(-45deg);
-      }
     }
   }
 }

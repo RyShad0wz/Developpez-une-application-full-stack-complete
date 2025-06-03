@@ -15,21 +15,27 @@
     </p>
     <div style="height: 24px;"></div>
     <div class="content">{{ article.content }}</div>
+
+    <!-- TRAIT HORIZONTAL PLUS ÉPAIS -->
+    <hr class="separator" />
   </article>
 
   <section class="comments">
     <h2>Commentaires</h2>
     <div style="height: 14px;"></div>
+
     <div class="comments-container">
-      <div *ngFor="let c of comments" class="comment-bubble">
+      <!-- On crée un wrapper qui contient le nom DEHORS de la bulle -->
+      <div *ngFor="let c of comments" class="comment-wrapper">
         <span class="author-name">{{ c.authorName }}</span>
-        <div class="comment-header">
+        <div class="comment-bubble">
+          <div class="comment-content">{{ c.content }}</div>
         </div>
-        <div class="comment-content">{{ c.content }}</div>
       </div>
     </div>
 
     <div style="height: 24px;"></div>
+
     <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
       <mat-form-field appearance="fill">
         <mat-label>Écrivez ici votre commentaire</mat-label>

@@ -1,41 +1,45 @@
 <section class="profile-container">
   <h2>Profil utilisateur</h2>
   <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="profile-form">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="profile-field">
       <mat-label>Nom d’utilisateur</mat-label>
       <input matInput formControlName="name" />
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="profile-field">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" />
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="profile-field">
       <mat-label>Nouveau mot de passe</mat-label>
       <input matInput type="password" formControlName="password" />
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">
+    <!-- on place une classe pour cibler ce bouton dans le CSS -->
+    <button mat-raised-button color="primary" type="submit" class="save-btn">
       Sauvegarder
     </button>
   </form>
 
-<h3>Abonnements</h3>
-<div class="abonnements-list">
-  <div *ngFor="let topic of subscriptions" class="abonnement-card">
-    <div class="abonnement-content">
-      <div>
-        <div class="abonnement-title">{{ topic.name }}</div>
-        <div class="abonnement-desc">{{ topic.description }}</div>
+  <h3>Abonnements</h3>
+  <div class="abonnements-list">
+    <div *ngFor="let topic of subscriptions" class="abonnement-card">
+      <div class="abonnement-content">
+        <div>
+          <div class="abonnement-title">{{ topic.name }}</div>
+          <div class="abonnement-desc">{{ topic.description }}</div>
+        </div>
+        <!-- on garde cette structure, mais on repositionne le bouton en CSS -->
+        <button mat-raised-button color="primary" class="unsub-btn" (click)="unsubscribe(topic.id)">
+          Se désabonner
+        </button>
       </div>
-      <button mat-raised-button color="primary" class="unsub-btn" (click)="unsubscribe(topic.id)">
-        Se désabonner
-      </button>
+    </div>
+    <div *ngIf="subscriptions.length === 0" class="no-abonnement">
+      Aucun abonnement pour le moment.
     </div>
   </div>
-  <div *ngIf="subscriptions.length === 0" class="no-abonnement">Aucun abonnement pour le moment.</div>
-</div>
 </section>
 
 <div class="error" *ngIf="error">{{ error }}</div>

@@ -1,20 +1,69 @@
+/* profile.component.scss */
+
+/* Conteneur global du profil */
 .profile-container {
   max-width: 600px;
   min-height: calc(100vh - 64px);
   margin: 2rem auto;
 }
 
+/* ---------- Titres centrés et agrandis ---------- */
+.profile-container h2,
+.profile-container h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Titre "Profil utilisateur" */
+.profile-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Titre "Abonnements" */
+.profile-container h3 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem; /* ajouter de l’espace au-dessus de "Abonnements" */
+  margin-bottom: 1rem;
+}
+
+/* ---------- Formulaire 'Profil utilisateur' ---------- */
+
+/* On centre les champs, on limite leur largeur, et on ajoute du gap */
 .profile-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
+
+  /* Ligne horizontale (trait) sous le formulaire */
+  border-bottom: 1px solid #000000;
+  padding-bottom: 2rem;
 }
 
+/* Champ individuel (mat-form-field) */
+.profile-field {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Bouton 'Sauvegarder' : centré, taille automatique, largeur minimale */
+.save-btn {
+  margin-top: 1rem;
+  align-self: center;
+  width: auto;
+  min-width: 140px;
+  font-weight: bold;
+}
+
+/* Si jamais vous avez d'autres mat-list-item dans ce composant */
 mat-list-item {
   display: flex;
   justify-content: space-between;
 }
+
+/* ---------- Liste des abonnements ---------- */
 
 .abonnements-list {
   display: grid;
@@ -26,54 +75,63 @@ mat-list-item {
   }
 }
 
+/* Carte d’abonnement : boîte verticale, espace entre contenu et bouton */
 .abonnement-card {
-  background: #f6f2fd; // violet très clair, adapte si tu veux
+  background: rgb(219, 219, 219); /* violet très clair */
   border-radius: 18px;
   box-shadow: 0 6px 32px 0 rgba(112, 78, 235, 0.10);
-  padding: 0rem 1.4rem;
+  padding: 1rem;                /* Ajoute un padding plus uniforme */
   display: flex;
-  align-items: center;
-  min-height: 110px;
+  flex-direction: column;       /* Empile verticalement titre/desc et bouton */
+  justify-content: space-between;
+  min-height: 140px;            /* Hauteur minimale pour dégager de l’espace */
 }
 
+/* Contenu interne de la carte (titre + description + bouton) */
 .abonnement-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  align-items: center;
-
+  /* Sur petits écrans, on aligne à gauche les éléments */
   @media (max-width: 600px) {
-    flex-direction: column;
     gap: 0.8rem;
     align-items: flex-start;
   }
 }
 
+/* Titre du thème */
 .abonnement-title {
   font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 0.25rem;
 }
 
+/* Description du thème */
 .abonnement-desc {
   color: #333;
   font-size: 0.98rem;
   opacity: 0.8;
+  line-height: 1.3;
 }
 
+/* Bouton 'Se désabonner' centré en bas de la carte */
 .unsub-btn {
   background: #a084e8 !important;
   color: #fff !important;
   border-radius: 12px !important;
-  min-width: 140px;
+  align-self: center; /* Centre horizontalement */
+  margin-top: auto;   /* Pousse le bouton tout en bas */
+  min-width: 120px;   /* Largeur minimale */
   font-weight: bold;
   box-shadow: 0 4px 16px 0 rgba(112, 78, 235, 0.10);
   transition: background 0.2s;
+
   &:hover {
     background: #815fd1 !important;
   }
 }
 
+/* Message si aucun abonnement */
 .no-abonnement {
   grid-column: 1 / -1;
   text-align: center;
@@ -81,6 +139,7 @@ mat-list-item {
   margin-top: 2rem;
 }
 
+/* Affichage des erreurs */
 .error {
   color: red;
   text-align: center;
