@@ -1,14 +1,33 @@
 <mat-toolbar color="primary" class="mat-toolbar">
   <img src="/assets/logo_p6.png" alt="MDD" class="logo" (click)="goHome()" />
   <span class="spacer"></span>
+
   <nav class="desktop-menu" *ngIf="!isVisitor">
     <button mat-button class="logout" (click)="logout()">Se déconnecter</button>
-    <button mat-button routerLink="/articles">Articles</button>
-    <button mat-button routerLink="/topics">Thèmes</button>
+
+    <button
+      mat-button
+      routerLink="/articles"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Articles
+    </button>
+
+    <button
+      mat-button
+      routerLink="/topics"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Thèmes
+    </button>
+
     <button mat-icon-button routerLink="/me" class="user-btn" aria-label="Profil">
       <mat-icon>person</mat-icon>
     </button>
   </nav>
+
   <button
     mat-icon-button
     class="mobile-menu"

@@ -98,6 +98,14 @@
   width: 60px !important;
   height: 60px !important;
 }
+.desktop-menu .active-link {
+  color: #6449FF !important;
+  font-weight: 600 !important;
+}
+.desktop-menu button[mat-button] {
+  font-size: 1.25rem;
+}
+
 
 
 

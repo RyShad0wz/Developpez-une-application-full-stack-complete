@@ -1,19 +1,62 @@
 <ng-container *ngIf="!isHomePage()">
   <mat-drawer-container class="main-container">
-<!-- Modifiez votre drawer comme ceci -->
-<mat-drawer #drawer mode="over" position="end" class="drawer-content">
-  <div class="menu-items"> <!-- Nouveau conteneur pour les boutons principaux -->
-     <button *ngIf="auth.isLogged()" mat-raised-button class="drawer-btn logout" (click)="navbar.logout(); drawer.close()">Se déconnecter</button>
-    <button *ngIf="auth.isLogged()" mat-raised-button class="drawer-btn" routerLink="/articles" (click)="drawer.close()">Articles</button>
-    <button *ngIf="auth.isLogged()" mat-raised-button class="drawer-btn" routerLink="/topics" (click)="drawer.close()">Thèmes</button>
-  </div>
-  
-  <div class="user-container"> <!-- Conteneur pour le bouton utilisateur -->
-    <button *ngIf="auth.isLogged()" mat-icon-button class="user-btn" routerLink="/me" (click)="drawer.close()" aria-label="Profil">
-      <mat-icon>person</mat-icon>
-    </button>
-  </div>
-</mat-drawer>
+    <!-- Drawer qui s’ouvre en “overlay” depuis la droite -->
+    <mat-drawer
+      #drawer
+      mode="over"
+      position="end"
+      class="drawer-content"
+      [disableClose]="false"
+    >
+      <!-- Bloc principal : Se déconnecter + Articles + Thèmes -->
+      <div class="menu-items">
+        <!-- Se déconnecter en texte rouge (mat-button color="warn") -->
+        <button
+          *ngIf="auth.isLogged()"
+          mat-button
+          color="warn"
+          class="logout-btn"
+          (click)="navbar.logout(); drawer.close()"
+        >
+          Se déconnecter
+        </button>
+
+        <!-- Liens “Articles” / “Thèmes” en mat-button (texte noir) -->
+        <button
+          *ngIf="auth.isLogged()"
+          mat-button
+          class="drawer-link"
+          routerLink="/articles"
+          (click)="drawer.close()"
+        >
+          Articles
+        </button>
+        <button
+          *ngIf="auth.isLogged()"
+          mat-button
+          class="drawer-link"
+          routerLink="/topics"
+          (click)="drawer.close()"
+        >
+          Thèmes
+        </button>
+      </div>
+
+      <!-- Bloc bas : icône Profil -->
+      <div class="user-container">
+        <button
+          *ngIf="auth.isLogged()"
+          mat-icon-button
+          class="user-btn"
+          routerLink="/me"
+          (click)="drawer.close()"
+          aria-label="Profil"
+        >
+          <mat-icon>person</mat-icon>
+        </button>
+      </div>
+    </mat-drawer>
+
     <mat-drawer-content>
       <app-navbar [drawer]="drawer" #navbar [isVisitor]="!auth.isLogged()"></app-navbar>
       <router-outlet></router-outlet>
@@ -21,7 +64,7 @@
   </mat-drawer-container>
 </ng-container>
 
-<!-- En dehors du ng-container, mets juste le <router-outlet> pour la home -->
+<!-- Pour la page Home, on n’inclut qu’un router-outlet “plein écran” -->
 <ng-container *ngIf="isHomePage()">
   <router-outlet></router-outlet>
 </ng-container>

@@ -5,6 +5,7 @@
   padding: 0 1rem;      /* petit espace à gauche/droite */
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 64px);
   gap: 2rem;
 
   /* ---------- Bouton "Retour" ---------- */

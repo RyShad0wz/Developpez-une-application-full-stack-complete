@@ -21,12 +21,17 @@
 }
 
 .home-link {
+  display: inline-block;          /* pour pouvoir mettre du padding et de la bordure */
+  padding: 0.5rem 1rem;           /* ajustez selon l’effet “bouton” souhaité */
   font-size: 1.25rem;
   font-weight: 500;
-  color: #6c63ff;   // ou utiliser une variable de ton thème Angular Material
+  color: #000;                    /* texte noir */
   text-decoration: none;
+  border: 2px solid #000;         /* bordure noire */
+  border-radius: 4px;             /* angles légèrement arrondis (optionnel) */
+  background-color: transparent;  /* fond transparent */
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 .home-link:hover {
   opacity: 0.7;
