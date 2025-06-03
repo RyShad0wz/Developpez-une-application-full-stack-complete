@@ -6,6 +6,13 @@
   min-height: calc(100vh - 64px);
   gap: 1rem;
 }
+button[mat-raised-button][type="submit"] {
+  align-self: center;
+  min-width: 120px;
+  width: fit-content;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
 .error {
   color: red;
   font-size: 0.875rem;
@@ -13,6 +20,20 @@
 .switch {
   text-align: center;
   margin-top: 1rem;
+}
+h2 {
+  text-align: center;
+}
+.logo-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem; /* laisse un peu d’espace sous la barre (si jamais elle reste), ou juste pour le visuel */
+}
+
+.logo-mobile {
+  max-width: 200px;
+  width: 50%;
+  cursor: pointer;
 }
 .back-btn {
   position: absolute; 
@@ -29,4 +50,10 @@
   &:hover {
     background: rgba(123, 75, 255, 0.1);
   }
+}
+@media (max-width: 768px) {
+  .mobile-only { display: block; }
+}
+@media (min-width: 769px) {
+  .mobile-only { display: none; }
 }
